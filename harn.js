@@ -105,11 +105,7 @@ var auto_skill_table = [
 
 // Make the functions
 _.map(auto_skill_table, function(vals) { make_skill(cel, vals[0], vals[1], vals[2]); });
-
-// Skill Display Dump 
-var autoSkills = ['climbing', 'jumping', 'stealth', 'throwing', 'awareness', 'combat_awareness',
-                  'intrigue', 'language', 'oratory', 'rhetoric', 'ritual', 'singing'];
 // Dump them all out
-_.map(autoSkills, function(skill){ cel.dsbo(skill) });
+_.map(auto_skill_table, function(skill){ cel.dsbo(skill[0]) });
 
 
