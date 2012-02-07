@@ -108,4 +108,15 @@ _.map(auto_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), v
 // Display them all
 _.map(auto_skill_table, function(skill){ cel.dsbo(skill[0]) });
 
+var phys_skill_table = [
+  ['acrobatics', 'us_ls_ag_ag', 1],
+  ['dancing',    'dx_ag_ag',    2],
+  ['skiiing',    'ls_dx_ag',    1],
+  ['swimming',   'us_ls_dx_ag', 1]
+];
+
+// Make the functions
+_.map(phys_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+// Display them all as if we had them all
+_.map(phys_skill_table, function(skill){ cel.dsbo(skill[0]) });
 
