@@ -4,6 +4,8 @@ var _ = require('underscore');
 var cel = {
   "Upper Strength": 17,
   "Lower Strength": 14,
+  "Structural Stamina": 15,
+  "Internal Endurance": 19,
   "Dexterity": 14,
   "Agility": 14,
   "Speed": 13,
@@ -25,6 +27,8 @@ console.log(cel);
 // Attr Funcs
 function us() { return "Upper Strength"; }
 function ls() { return "Lower Strength"; }
+function ss() { return "Structural Stamina"; }
+function ie() { return "Internal Endurance"; }
 function dx() { return "Dexterity"; }
 function ag() { return "Agility"; }
 function sp() { return "Speed"; }
@@ -120,16 +124,92 @@ _.map(phys_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), v
 // Display them all as if we had them all
 _.map(phys_skill_table, function(skill){ cel.dsbo(skill[0]) });
 
+// Communication
 var comm_skill_table = [
   ['lovecraft', 'co_vo_tc', 3],
   ['musician',  'dx_hr_tc', 1],
   ['command',   'vo_wi_it', 2]
 ];
-
-// Make the functions
 _.map(comm_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
-// Display them all as if we had them all
 _.map(comm_skill_table, function(skill){ cel.dsbo(skill[0]) });
+
+// Naval
+var naval_skill_table = [
+  ['seamanship', 'us_ls_dx_ag', 1],
+  ['shipwright', 'us_ls_dx_it', 1],
+  ['piloting',   'ey_tc_it',    1],
+  ['weatherlore','ey_st_tc',    1],
+  ['cartography','it_ey_tc',    1],
+  ['astronomy',  'it_ey_me',    1]
+];
+_.map(naval_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+_.map(naval_skill_table, function(skill){ cel.dsbo(skill[0]) });
+
+// Thieving
+var thieving_skill_table = [
+  ['treasure_appraisal', 'ey_me_it', 2],
+  ['lockcraft',          'dx_tc_wi', 1],
+  ['trapsmith',          'dx_tc_wi', 1],
+  ['acting',             'ag_vo_it', 1],
+  ['forgery',            'dx_ey_wi', 2],
+  ['legerdemain',        'dx_tc_tc', 1]
+];
+_.map(thieving_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+_.map(thieving_skill_table, function(skill){ cel.dsbo(skill[0]) });
+
+// Survival
+var survival_skill_table = [
+  ['foraging_herblore', 'ag_vo_wi',    1],
+  ['fishing',           'dx_tc_wi',    2],
+  ['animalcraft',       'ag_vo_wi',    1],
+  ['tracking',          'ey_st_it',    1],
+  ['survival',          'us_ls_dx_it', 2],
+  ['hideworking',       'dx_st_tc',    1],
+  ['woodcarving',       'dx_tc_wi',    1],
+  ['trapping',          'it_tc_wi',    1],
+  ['fletching',         'dx_tc_tc',    1]
+];
+_.map(survival_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+_.map(survival_skill_table, function(skill){ cel.dsbo(skill[0]) });
+
+// Scholarly
+var scholarly_skill_table = [
+  ['scholarly_knowledge', 'it_me_wi', 2],
+  ['drawing_artistry',    'ey_dx_tc', 2],
+  ['alchemy',             'st_it_au', 1],
+  ['heraldry',            'wi_ey_tc', 1],
+  ['mathematics',         'it_me_wi', 2],
+  ['history',             'it_me_me', 2]
+];
+_.map(scholarly_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+_.map(scholarly_skill_table, function(skill){ cel.dsbo(skill[0]) });
+
+// Other 
+var other_skill_table = [
+  ['agriculture',  'us_ls_ie_ss_wi', 2],
+  ['glassworking', 'dx_dx_tc',       1], 
+  ['brewing',      'st_st_tc',       1],     
+  ['carpentry',    'us_dx_tc',       2],
+  ['ceramics',     'dx_tc_tc',       1],
+  ['cooking',      'st_st_tc',       3],
+  ['emabalming',   'dx_st_tc',       1],
+  ['engineering',  'dx_it_it',       1],
+  ['jewelcraft',   'ey_tc_wi',       1],
+  ['masonry',      'us_dx_tc',       1],
+  ['metalcraft',   'us_dx_tc',       1],
+  ['milling',      'us_ls_st_tc',    1],
+  ['minerology',   'tc_ey_it',       1],
+  ['perfumery',    'st_st_it',       1],
+  ['physician',    'tc_it_dx',       2],
+  ['textilecraft', 'dx_ey_tc',       2],
+  ['timbercraft',  'us_ls_dx_tc',    1],
+  ['weaponcraft',  'us_dx_tc',       1],
+  ['armorcraft',   'us_dx_tc',       1]
+];
+_.map(other_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+_.map(other_skill_table, function(skill){ cel.dsbo(skill[0]) });
+
+
 
 
 
