@@ -89,23 +89,23 @@ function at(attrs_func) {
 
 // Terse Style
 var auto_skill_table = [
- ['climbing', at('us_ls_dx_ag'), 4],
- ['jumping', at('ls_sp_ag'), 4],
- ['stealth', at('ag_tc_wi'), 3],
- ['throwing', at('us_dx_ey'), 4],
- ['awareness', at('ey_hr_st'), 4],
- ['combat_awareness',at('ey_hr_st'), 3],
- ['intrigue', at('it_me_wi_au'), 3],
- ['language', at('it_me_me_wi'), 3],
- ['oratory', at('co_vo_it'), 2],
- ['rhetoric', at('vo_it_wi'), 3],
- ['ritual', at('vo_it_me_wi'), 1],
- ['singing', at('hr_vo_vo'), 3]
+ ['climbing',        'us_ls_dx_ag', 4],
+ ['jumping',         'ls_sp_ag',    4],
+ ['stealth',         'ag_tc_wi',    3],
+ ['throwing',        'us_dx_ey',    4],
+ ['awareness',       'ey_hr_st',    4],
+ ['combat_awareness','ey_hr_st',    3],
+ ['intrigue',        'it_me_wi_au', 3],
+ ['language',        'it_me_me_wi', 3],
+ ['oratory',         'co_vo_it',    2],
+ ['rhetoric',        'vo_it_wi',    3],
+ ['ritual',          'vo_it_me_wi', 1],
+ ['singing',         'hr_vo_vo',    3]
 ];
 
 // Make the functions
-_.map(auto_skill_table, function(vals) { make_skill(cel, vals[0], vals[1], vals[2]); });
-// Dump them all out
+_.map(auto_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+// Display them all
 _.map(auto_skill_table, function(skill){ cel.dsbo(skill[0]) });
 
 
