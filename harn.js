@@ -22,64 +22,40 @@ var cel = {
 console.log(cel);
 console.log("Upper Strength => " + cel["Upper Strength"]);
 
-function oml_calc(func, hchar, oml) {
-  return(func(hchar)*oml);
-};
-
-function skill_base4(vals) {
-  return Math.round(
-      (_.reduce([vals[0], vals[1], vals[2], vals[3]], function(memo, num){ return memo + num; }, 0)
-       /4));
-};
-
-function skill_base3(vals) {
-  return Math.round(
-      (_.reduce([vals[0], vals[1], vals[2]], function(memo, num){ return memo + num; }, 0)
-       /3));
-};
-
-// ---- Climbing ---- 
-function climbing(hchar) {
-  return skill_base4([hchar["Upper Strength"], 
-                      hchar["Lower Strength"],
-                      hchar["Dexterity"],
-                      hchar["Agility"]
-                      ]);
-};
-
-function climbing_oml(hchar) {
-  return oml_calc(climbing, hchar, 4);
-};
-
-// ---- Jumping ----
-function jumping(hchar) {
-  return skill_base3([hchar["Lower Strength"],
-                      hchar["Speed"],
-                      hchar["Agility"]
-                      ]);
-};
-
-function jumping_oml(hchar) {
-  return oml_calc(jumping, hchar, 3);
-};
-
-function make_skill(obj, skill_name, vals, baseNum) {
+function make_skill(obj, skill_name, vals, oml) {
  obj[skill_name] = function()  {
   return Math.round(
       (_.reduce(vals, function(memo, num){ return memo + num; }, 0)
-       /baseNum));
+       /vals.length));
  };
  obj[skill_name + "_oml"] = function() {
-    return (obj[skill_name]() * baseNum);
+    return (obj[skill_name]() * oml);
  };
+ obj['dsbo'] = function (skill) {
+  console.log(skill + " Base: " + obj[skill]());
+  console.log(skill + " OML: " + obj[skill + '_oml']());
+};
+ 
 }
 
+// Automatic Skills
+make_skill(cel, 'climbing', [cel["Upper Strength"], cel["Lower Strength"], cel["Dexterity"], cel["Agility"]], 4);
+make_skill(cel, 'jumping', [cel["Lower Strength"], cel["Speed"], cel["Agility"]], 4);
+make_skill(cel, 'stealth', [cel["Agility"], cel["Touch"], cel["Will"]], 3);
+make_skill(cel, 'throwing', [cel["Upper Strength"], cel["Dexterity"], cel["EyeSight"]], 4);
+make_skill(cel, 'awareness', [cel["EyeSight"], cel["Hearing"], cel["Smell Taste"]], 4);
+make_skill(cel, 'combat_awareness', [cel["EyeSight"], cel["Hearing"], cel["Smell Taste"]], 3);
+make_skill(cel, 'intrigue', [cel["Intelligence"], cel["Memory"], cel["Will"], cel["Aura"]], 3);
+make_skill(cel, 'language', [cel["Intelligence"], cel["Memory"], cel["Memory"], cel["Will"]], 3);
+make_skill(cel, 'oratory', [cel["Comeliness"], cel["Voice"], cel["Intelligence"]], 2);
+make_skill(cel, 'rhetoric', [cel["Voice"], cel["Intelligence"], cel["Will"]], 3);
+make_skill(cel, 'ritual', [cel["Voice"], cel["Intelligence"], cel["Memory"], cel["Will"]], 1);
+make_skill(cel, 'singing', [cel["Hearing"], cel["Voice"], cel["Voice"]], 3);
 
-console.log("Climbing Skill Base: " + climbing(cel));
-console.log("Climbing Oml: " + climbing_oml(cel));
-console.log("Jumping Skill Base: " + jumping(cel));
-console.log("Jumping OML: " + jumping_oml(cel));
+// Skill Display Dump 
+var autoSkills = ['climbing', 'jumping', 'stealth', 'throwing', 'awareness', 'combat_awareness',
+                  'intrigue', 'language', 'oratory', 'rhetoric', 'ritual', 'singing'];
+// Dump them all out
+_.map(autoSkills, function(skill){ cel.dsbo(skill) });
 
-make_skill(cel, 'jumping', [cel["Lower Strength"], cel["Speed"], cel["Agility"]], 3);
-console.log("MetaSkillBaseJump => " + cel.jumping());
-console.log("MetaSkillOmlJump => " + cel.jumping_oml());
+
