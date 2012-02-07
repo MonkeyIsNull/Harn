@@ -120,3 +120,16 @@ _.map(phys_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), v
 // Display them all as if we had them all
 _.map(phys_skill_table, function(skill){ cel.dsbo(skill[0]) });
 
+var comm_skill_table = [
+  ['lovecraft', 'co_vo_tc', 3],
+  ['musician',  'dx_hr_tc', 1],
+  ['command',   'vo_wi_it', 2]
+];
+
+// Make the functions
+_.map(comm_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
+// Display them all as if we had them all
+_.map(comm_skill_table, function(skill){ cel.dsbo(skill[0]) });
+
+
+
