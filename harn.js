@@ -209,7 +209,7 @@ var other_skill_table = [
 _.map(other_skill_table, function(vals) { make_skill(cel, vals[0], at(vals[1]), vals[2]); });
 _.map(other_skill_table, function(skill){ cel.dsbo(skill[0]) });
 
-// War!!!!!!!!
+// War, Motherfucker, it's WAR!!!!
 var war_skill_table = [
   ['unarmed',          'us_ls_dx_ag', 3],
   ['riding',           'dx_ag_wi',    2],
